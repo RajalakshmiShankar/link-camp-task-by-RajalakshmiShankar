@@ -1,0 +1,116 @@
+.carousel-section {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(rgba(14, 29, 52, 0.8), rgba(14, 29, 52, 0.8)),
+    url("../../assets/images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  position: relative;
+}
+
+.carousel-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-content {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.carousel-item {
+  display: none;
+  animation: fade 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.carousel-item h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.carousel-item p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.carousel-btn {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 50px;
+  transition: 0.5s;
+  color: #fff;
+  background: #0d42ff;
+  box-shadow: 0 8px 28px rgba(13, 66, 255, 0.2);
+  text-decoration: none;
+}
+
+.carousel-btn:hover {
+  background: #0d3eff;
+  box-shadow: 0 8px 28px rgba(13, 66, 255, 0.4);
+  color: #fff;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  gap: 12px;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: 0.3s;
+}
+
+.carousel-indicators button.active {
+  background: #fff;
+  width: 20px;
+  border-radius: 6px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .carousel-item h2 {
+    font-size: 36px;
+  }
+
+  .carousel-item p {
+    font-size: 16px;
+  }
+
+  .carousel-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
