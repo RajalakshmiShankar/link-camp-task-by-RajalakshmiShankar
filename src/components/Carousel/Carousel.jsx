@@ -18,9 +18,19 @@ const Carousel = () => {
     },
   ];
 
+  const nextSlide = () => {
+    setActiveIndex((current) => (current + 1) % items.length);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex((current) =>
+      current === 0 ? items.length - 1 : current - 1
+    );
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % items.length);
+      nextSlide();
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
@@ -51,6 +61,34 @@ const Carousel = () => {
             </div>
           ))}
         </div>
+
+        {/* Navigation Arrows */}
+        <button className='carousel-nav prev' onClick={prevSlide}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          >
+            <polyline points='15 18 9 12 15 6'></polyline>
+          </svg>
+        </button>
+        <button className='carousel-nav next' onClick={nextSlide}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          >
+            <polyline points='9 18 15 12 9 6'></polyline>
+          </svg>
+        </button>
 
         <div className='carousel-indicators'>
           {items.map((_, index) => (
