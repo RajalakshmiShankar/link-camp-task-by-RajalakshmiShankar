@@ -1,28 +1,39 @@
 import React, { useState, useEffect } from "react";
 import "./Carousel.css";
+// Import images
+import slide1 from "../../assets/images/ieeelink1.jpg";
+import slide2 from "../../assets/images/ieeelink2.jpg";
+import slide3 from "../../assets/images/ieeelink3.jpg";
 
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState(2);
+
   const items = [
     {
       title: "Welcome to IEEE Link",
       description: "Empowering Innovation Through Technology",
+      image: slide1,
     },
     {
       title: "Connect & Collaborate",
       description: "Join the Global Engineering Community",
+      image: slide2,
     },
     {
       title: "Learn & Grow",
       description: "Access World-Class Technical Resources",
+      image: slide3,
     },
   ];
 
   const nextSlide = () => {
+    setPreviousIndex(activeIndex);
     setActiveIndex((current) => (current + 1) % items.length);
   };
 
   const prevSlide = () => {
+    setPreviousIndex(activeIndex);
     setActiveIndex((current) =>
       current === 0 ? items.length - 1 : current - 1
     );
@@ -31,7 +42,7 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [items.length]);
@@ -44,9 +55,16 @@ const Carousel = () => {
             <div
               key={index}
               className={`carousel-item ${
-                index === activeIndex ? "active" : ""
+                index === activeIndex
+                  ? "active"
+                  : index === previousIndex
+                  ? "previous"
+                  : ""
               }`}
             >
+              <div className='carousel-background'>
+                <img src={item.image} alt={item.title} />
+              </div>
               <div className='container'>
                 <div className='row justify-content-center'>
                   <div className='col-lg-6 text-center'>
@@ -73,7 +91,7 @@ const Carousel = () => {
             strokeLinecap='round'
             strokeLinejoin='round'
           >
-            <polyline points='15 18 9 12 15 6'></polyline>
+            <polyline points='15 18 9 12 15 6' />
           </svg>
         </button>
         <button className='carousel-nav next' onClick={nextSlide}>
@@ -86,7 +104,7 @@ const Carousel = () => {
             strokeLinecap='round'
             strokeLinejoin='round'
           >
-            <polyline points='9 18 15 12 9 6'></polyline>
+            <polyline points='9 6 15 12 9 18' />
           </svg>
         </button>
 
@@ -95,7 +113,10 @@ const Carousel = () => {
             <button
               key={index}
               className={index === activeIndex ? "active" : ""}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                setPreviousIndex(activeIndex);
+                setActiveIndex(index);
+              }}
             ></button>
           ))}
         </div>

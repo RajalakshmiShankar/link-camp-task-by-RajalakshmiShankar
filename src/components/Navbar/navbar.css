@@ -77,6 +77,8 @@
     white-space: nowrap;
     transition: 0.3s;
     text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
   }
 
   .navmenu a i,
@@ -95,6 +97,7 @@
   .navmenu .active,
   .navmenu .active:focus {
     color: #ffffff;
+    opacity: 1;
   }
 
   .navmenu .dropdown ul {
