@@ -1,6 +1,6 @@
 .stats-section {
   padding: 60px 0;
-  background-color: #fff;
+  background-color: #f8f9fa;
 }
 
 .stats-grid {
@@ -14,7 +14,7 @@
 .stat-item {
   text-align: center;
   padding: 30px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
@@ -28,6 +28,11 @@
   font-size: 40px;
   color: #0d42ff;
   margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.stat-item:hover .stat-icon {
+  color: #4d7eff;
 }
 
 .stat-item h2 {
