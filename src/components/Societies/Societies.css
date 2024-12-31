@@ -1,0 +1,146 @@
+.societies-section {
+  padding: 80px 0;
+  background-color: #fff;
+}
+
+.societies-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.societies-header {
+  text-align: center;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-in .societies-header {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.societies-header h2 {
+  color: #001973;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.underline {
+  width: 50px;
+  height: 3px;
+  background-color: #ff5733;
+  margin: 20px auto;
+}
+
+.description {
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto 15px;
+}
+
+.sub-description {
+  color: #666666;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.societies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.society-item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animate-in .society-item {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.society-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.society-item img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Animation delays for grid items */
+.animate-in .society-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.animate-in .society-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.animate-in .society-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.animate-in .society-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+/* ... continue for all items */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .societies-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .societies-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .societies-header h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .societies-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -9,6 +9,7 @@ import Newsletter from "./components/Newsletter/Newsletter";
 import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
+import Societies from "./components/Societies/Societies";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +49,7 @@ function App() {
       <Stats />
       <Features />
       <Quote />
+      <Societies />
       <Newsletter />
       <Footer />
     </div>
