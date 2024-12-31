@@ -136,3 +136,120 @@
     transform: translateY(-8px) rotate(-45deg);
   }
 }
+
+/* Add these styles for the dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-toggle:hover::after,
+.dropdown.show .dropdown-toggle::after {
+  transform: rotate(-135deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 180px;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  padding: 8px 0;
+  list-style: none;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 8px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background: #f8f9fa;
+  color: #0d42ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    padding-left: 20px;
+    margin: 0;
+    list-style: none;
+  }
+
+  .dropdown-toggle {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .dropdown-item {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .dropdown-item:hover {
+    background: transparent;
+    color: #fff;
+  }
+}
+
+/* Add these styles for the button that looks like a link */
+button.nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+button.nav-link:hover {
+  color: #fff;
+}
+
+/* Ensure smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}

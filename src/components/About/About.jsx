@@ -51,7 +51,7 @@ const About = () => {
   }, []);
 
   return (
-    <section className='about-section'>
+    <section id='about' className='about-section'>
       <div className='about-container'>
         <div className='about-header'>
           <div className='title-wrapper' ref={titleRef}>
