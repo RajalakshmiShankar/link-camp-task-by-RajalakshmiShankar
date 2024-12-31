@@ -1,22 +1,20 @@
 import React from "react";
 import "./Footer.css";
-import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer id='footer' className='footer dark-background'>
       <div className='footer-content'>
-        <div className='footer-brand'>
-          <h2>Logis</h2>
+        <div className='footer-about'>
+          <h4>About IEEE LINK</h4>
           <p>
-            Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada
-            terra videa magna derita valies darta donna mare fermentum iaculis
-            eu non diam phasellus.
+            IEEE LINK is an innovative concept that originated in IEEE Kerala
+            Section in India, aimed at networking student branches in an
+            effective way thereby increasing the value in IEEE student
+            membership.
           </p>
           <div className='social-links'>
-            <a href='/' className='social-link'>
-              <FaTwitter />
-            </a>
             <a href='/' className='social-link'>
               <FaFacebook />
             </a>
@@ -28,60 +26,61 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
         <div className='footer-links'>
-          <h4>Useful Links</h4>
+          <h4>USEFUL LINKS</h4>
           <ul>
             <li>
-              <a href='/'>Home</a>
+              <a href='/'>MINT</a>
             </li>
             <li>
-              <a href='/'>About us</a>
+              <a href='/'>IEEE Kerala Section Interns</a>
             </li>
             <li>
-              <a href='/'>Services</a>
+              <a href='/'>IEEE Kerala Section YP</a>
             </li>
             <li>
-              <a href='/'>Terms of service</a>
+              <a href='/'>IEEE Students</a>
             </li>
             <li>
-              <a href='/'>Privacy policy</a>
+              <a href='/'>Privacy Policy</a>
+            </li>
+            <li>
+              <a href='/'>Refund Policy</a>
+            </li>
+            <li>
+              <a href='/'>Terms & condition</a>
             </li>
           </ul>
         </div>
-
         <div className='footer-links'>
-          <h4>Our Services</h4>
+          <h4>USEFUL LINKS</h4>
           <ul>
             <li>
-              <a href='/'>Web Design</a>
+              <a href='/'>IEEE Kerala Section</a>
             </li>
             <li>
-              <a href='/'>Web Development</a>
+              <a href='/'>IEEE India Council</a>
             </li>
             <li>
-              <a href='/'>Product Management</a>
+              <a href='/'>IEEE Region 10</a>
             </li>
             <li>
-              <a href='/'>Marketing</a>
-            </li>
-            <li>
-              <a href='/'>Graphic Design</a>
+              <a href='/'>IEEE</a>
             </li>
           </ul>
         </div>
 
         <div className='footer-contact'>
-          <h4>Contact Us</h4>
+          <h4>CONTACT US</h4>
           <div className='contact-info'>
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p>United States</p>
+            <p>Pulimoodu,</p>
+            <p>Thiruvananthapuram,</p>
+            <p>Kerala, India</p>
             <p>
-              <strong>Phone:</strong> +1 5589 55488 55
+              <strong>Phone:</strong> +91 0471 247 3515
             </p>
             <p>
-              <strong>Email:</strong> info@example.com
+              <strong>Email:</strong> team@ieee-link.org
             </p>
           </div>
         </div>
@@ -91,10 +90,11 @@ const Footer = () => {
         <div className='copyright'>
           <div className='copyright-text'>
             <p>
-              © Copyright <strong>Logis</strong> All Rights Reserved
+              © Copyright <strong>IEEE Kerala Section</strong>. All Rights
+              Reserved
             </p>
             <p>
-              Designed by <a href='https://bootstrapmade.com/'>BootstrapMade</a>
+              Made with ❤️ by <strong>RAJALAKSHMI SHANKAR</strong>
             </p>
           </div>
         </div>

@@ -13,17 +13,39 @@ const Carousel = () => {
 
   const items = [
     {
-      title: "Welcome to IEEE LINK",
+      title: (
+        <>
+          Welcome to{" "}
+          <span className='highlight'>
+            IEEE <span className='link-text'>LINK</span>
+          </span>
+        </>
+      ),
       description: "Connecting Student Branches Across Kerala Section",
       image: slide1,
     },
     {
-      title: "Student Activities Group",
+      title: (
+        <>
+          <span className='highlight'>
+            IEEE <span className='link-text'>LINK</span>
+          </span>{" "}
+          Activities
+        </>
+      ),
       description: "Enhancing IEEE Student Member Experience Since 2005",
       image: slide2,
     },
     {
-      title: "Join Our Network",
+      title: (
+        <>
+          Join{" "}
+          <span className='highlight'>
+            IEEE <span className='link-text'>LINK</span>
+          </span>{" "}
+          Network
+        </>
+      ),
       description: "Building Bridges Between IEEE Student Communities",
       image: slide3,
     },
@@ -44,7 +66,12 @@ const Carousel = () => {
     );
     setIsAnimating(true);
     setIsZoomed(true);
-    setTimeout(() => setIsZoomed(false), 600);
+
+    // Reset animations after slide change
+    setTimeout(() => {
+      setIsZoomed(false);
+      setIsAnimating(false);
+    }, 800);
   };
 
   useEffect(() => {
@@ -52,8 +79,21 @@ const Carousel = () => {
       nextSlide();
     }, 5000);
 
+    // Reset animations when slide changes
+    const activeSlide = document.querySelector(".carousel-item.active");
+    if (activeSlide) {
+      const elements = activeSlide.querySelectorAll(
+        ".animate-title, .animate-description, .animate-btn"
+      );
+      elements.forEach((element) => {
+        element.style.animation = "none";
+        const reflow = element.offsetHeight;
+        element.style.animation = null;
+      });
+    }
+
     return () => clearInterval(interval);
-  }, [items.length]);
+  }, [activeIndex]);
 
   return (
     <section className='carousel-section'>

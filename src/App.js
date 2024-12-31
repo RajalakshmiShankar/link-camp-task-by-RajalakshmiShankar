@@ -14,12 +14,29 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Show loading screen for 2 seconds
+    }, 2000);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  // Optional: Add this if you're using React Router
+  useEffect(() => {
+    // Scroll to top when route changes
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener("popstate", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange);
+    };
   }, []);
 
   return (

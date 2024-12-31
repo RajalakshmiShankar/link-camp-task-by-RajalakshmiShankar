@@ -1,18 +1,63 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Features.css";
 import { BiBuildings, BiTrophy, BiCalendar, BiGroup } from "react-icons/bi";
 
 const Features = () => {
+  const headerRef = useRef(null);
+  const featuresRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: "0px",
+    };
+
+    const headerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-down");
+          headerObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const featuresObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const featureCards = entry.target.querySelectorAll(".feature-card");
+          featureCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add("animate-in");
+            }, index * 200); // Stagger the animations
+          });
+          featuresObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    if (headerRef.current) {
+      headerObserver.observe(headerRef.current);
+    }
+    if (featuresRef.current) {
+      featuresObserver.observe(featuresRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) headerObserver.unobserve(headerRef.current);
+      if (featuresRef.current) featuresObserver.unobserve(featuresRef.current);
+    };
+  }, []);
+
   return (
     <section className='features-section'>
       <div className='container'>
-        <div className='section-header'>
+        <div className='section-header' ref={headerRef}>
           <h2>FEATURES</h2>
           <p>What We Offer</p>
         </div>
 
-        <div className='features-grid'>
-          <div className='feature-card'>
+        <div className='features-grid' ref={featuresRef}>
+          <div className='feature-card slide-up'>
             <div className='feature-icon'>
               <BiBuildings />
             </div>
@@ -25,7 +70,7 @@ const Features = () => {
             </p>
           </div>
 
-          <div className='feature-card'>
+          <div className='feature-card slide-up'>
             <div className='feature-icon'>
               <BiTrophy />
             </div>
@@ -37,7 +82,7 @@ const Features = () => {
             </p>
           </div>
 
-          <div className='feature-card'>
+          <div className='feature-card slide-up'>
             <div className='feature-icon'>
               <BiCalendar />
             </div>
@@ -49,7 +94,7 @@ const Features = () => {
             </p>
           </div>
 
-          <div className='feature-card'>
+          <div className='feature-card slide-up'>
             <div className='feature-icon'>
               <BiGroup />
             </div>

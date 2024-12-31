@@ -65,15 +65,37 @@
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: hidden;
 }
 
 .carousel-item.active {
   opacity: 1;
   transform: translateX(0);
+  visibility: visible;
 }
 
 .carousel-item.previous {
   transform: translateX(-100%);
+  visibility: visible;
+}
+
+/* Text styles and animations */
+.carousel-text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.carousel-text-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
 }
 
 .carousel-item h2 {
@@ -91,6 +113,7 @@
   opacity: 0;
 }
 
+/* Button styles */
 .carousel-btn {
   font-weight: 500;
   font-size: 16px;
@@ -111,58 +134,7 @@
   box-shadow: 0 8px 28px rgba(13, 66, 255, 0.4);
 }
 
-.carousel-indicators {
-  position: absolute;
-  bottom: 50px;
-  display: flex;
-  gap: 12px;
-}
-
-.carousel-indicators button {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 0;
-  background: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  padding: 0;
-  transition: 0.3s;
-}
-
-.carousel-indicators button.active {
-  background: #fff;
-  width: 20px;
-  border-radius: 6px;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .carousel-item h2 {
-    font-size: 32px;
-  }
-
-  .carousel-item p {
-    font-size: 16px;
-  }
-
-  .carousel-btn {
-    padding: 10px 24px;
-    font-size: 14px;
-  }
-}
-
-/* Navigation Arrow Styles */
+/* Navigation styles */
 .carousel-nav {
   position: absolute;
   top: 50%;
@@ -193,8 +165,128 @@
   stroke-width: 2;
 }
 
-/* Mobile styles for navigation arrows */
+/* Indicators styles */
+.carousel-indicators {
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  gap: 12px;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: 0.3s;
+}
+
+.carousel-indicators button.active {
+  background: #fff;
+  width: 20px;
+  border-radius: 6px;
+}
+
+/* IEEE LINK text styles */
+.highlight {
+  color: #0d42ff;
+  position: relative;
+  display: inline-block;
+}
+
+.link-text {
+  color: #4d7eff;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0d42ff 0%, #4d7eff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+/* Animations */
+.animate-title {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-description {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+}
+
+.animate-btn {
+  animation: slideUp 0.8s ease-out 0.4s forwards;
+}
+
+.active .highlight {
+  animation: slideInSpecial 0.8s ease-out 0.2s forwards;
+}
+
+.active .link-text {
+  animation: glowText 2s ease-in-out infinite;
+}
+
+/* Animation keyframes */
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInSpecial {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glowText {
+  0% {
+    filter: brightness(100%);
+    text-shadow: 0 0 0 rgba(13, 66, 255, 0.3);
+  }
+  50% {
+    filter: brightness(120%);
+    text-shadow: 0 0 10px rgba(13, 66, 255, 0.5);
+  }
+  100% {
+    filter: brightness(100%);
+    text-shadow: 0 0 0 rgba(13, 66, 255, 0.3);
+  }
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
+  .carousel-text-content {
+    padding: 0 15px;
+  }
+
+  .carousel-item h2 {
+    font-size: 32px;
+  }
+
+  .carousel-item p {
+    font-size: 16px;
+  }
+
+  .carousel-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
   .carousel-nav {
     width: 40px;
     height: 40px;
@@ -212,157 +304,4 @@
   .carousel-nav.next {
     right: 20px;
   }
-}
-
-/* Update content positioning */
-.carousel-item .container {
-  position: relative;
-  z-index: 2;
-  padding-top: 100px;
-}
-
-/* Update existing styles */
-.carousel-text-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.carousel-text-content {
-  text-align: center;
-  max-width: 800px;
-  padding: 0 20px;
-}
-
-/* Animation classes */
-.animate-title {
-  animation: slideUp 0.8s ease-out forwards;
-}
-
-.animate-description {
-  animation: slideUp 0.8s ease-out 0.2s forwards;
-  opacity: 0;
-}
-
-.animate-btn {
-  animation: slideUp 0.8s ease-out 0.4s forwards;
-  opacity: 0;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Mobile responsive updates */
-@media (max-width: 768px) {
-  .carousel-text-content {
-    padding: 0 15px;
-  }
-
-  .carousel-item h2 {
-    font-size: 32px;
-  }
-
-  .carousel-item p {
-    font-size: 16px;
-  }
-}
-
-/* Add these new animation styles */
-.zoom-effect img {
-  animation: zoomAnimation 0.6s ease-out;
-}
-
-.zoom-in {
-  transform: scale(1.1);
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.indicator-animation {
-  transform: scale(1);
-  transition: transform 0.3s ease;
-}
-
-.indicator-animation:hover {
-  transform: scale(1.2);
-}
-
-.hover-effect {
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.hover-effect:hover {
-  transform: translateY(-50%) scale(1.1);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-@keyframes zoomAnimation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Update existing animations for smoother transitions */
-.animate-title {
-  animation: slideUp 0.8s ease-out forwards;
-}
-
-.animate-description {
-  animation: slideUp 0.8s ease-out 0.2s forwards;
-}
-
-.animate-btn {
-  animation: slideUp 0.8s ease-out 0.4s forwards;
-}
-
-/* Make transitions smoother */
-.carousel-item {
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.carousel-background img {
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Enhance button hover effect */
-.carousel-btn {
-  transition: all 0.3s ease;
-}
-
-.carousel-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(13, 66, 255, 0.4);
 }
