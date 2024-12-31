@@ -22,31 +22,50 @@ import ssit from "../../assets/images/Societies/ieee-ssit.png";
 
 const Societies = () => {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "50px",
-      }
-    );
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "50px",
+    };
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const headerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          headerObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const gridObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-grid");
+          const cards = entry.target.querySelectorAll(".society-item");
+          cards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add("pop-in");
+            }, index * 100);
+          });
+          gridObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    if (headerRef.current) {
+      headerObserver.observe(headerRef.current);
+    }
+
+    if (gridRef.current) {
+      gridObserver.observe(gridRef.current);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (headerRef.current) headerObserver.unobserve(headerRef.current);
+      if (gridRef.current) gridObserver.unobserve(gridRef.current);
     };
   }, []);
 
@@ -73,17 +92,19 @@ const Societies = () => {
   return (
     <section className='societies-section' ref={sectionRef}>
       <div className='societies-container'>
-        <div className='societies-header'>
-          <span className='subtitle'>OUR SOCIETIES</span>
-          <h2>GET INVOLVED WITH OUR DYNAMIC SOCIETIES</h2>
-          <div className='underline'></div>
-          <p className='description'>
+        <div className='societies-header' ref={headerRef}>
+          <span className='subtitle animate-item'>OUR SOCIETIES</span>
+          <h2 className='animate-item'>
+            GET INVOLVED WITH OUR DYNAMIC SOCIETIES
+          </h2>
+          <div className='underline animate-item'></div>
+          <p className='description animate-item'>
             IEEE Society members stay technically current, network with
             colleagues locally and abroad, and collaborate on research and
             projects with leading experts all while taking advantage of
             specialized opportunities.
           </p>
-          <p className='sub-description'>
+          <p className='sub-description animate-item'>
             IEEE develops communities around particular technology challenges or
             cutting-edge subject areas. Their areas of coverage may be general
             in nature, which include multi-disciplinary topics or emerging
@@ -91,10 +112,16 @@ const Societies = () => {
             interests.
           </p>
         </div>
-        <div className='societies-grid'>
+        <div className='societies-grid' ref={gridRef}>
           {societies.map((society, index) => (
-            <div key={index} className='society-item'>
-              <img src={society.logo} alt={society.alt} />
+            <div
+              key={index}
+              className='society-item'
+              style={{ "--delay": `${index * 0.1}s` }}
+            >
+              <div className='card-inner'>
+                <img src={society.logo} alt={society.alt} />
+              </div>
             </div>
           ))}
         </div>

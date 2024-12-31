@@ -13,45 +13,51 @@ import Societies from "./components/Societies/Societies";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [contentLoaded, setContentLoaded] = useState(false);
 
   useEffect(() => {
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
+    // Preload your assets here
+    const preloadAssets = async () => {
+      try {
+        // Add any asset preloading logic here
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate loading
+        setContentLoaded(true);
+      } catch (error) {
+        console.error("Error loading assets:", error);
+        setContentLoaded(true); // Show content even if there's an error
+      }
+    };
 
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    preloadAssets();
   }, []);
 
-  // Optional: Add this if you're using React Router
   useEffect(() => {
-    // Scroll to top when route changes
-    const handleRouteChange = () => {
-      window.scrollTo(0, 0);
-    };
+    if (contentLoaded) {
+      // Add a slight delay before hiding loading screen
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
 
-    window.addEventListener("popstate", handleRouteChange);
-
-    return () => {
-      window.removeEventListener("popstate", handleRouteChange);
-    };
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [contentLoaded]);
 
   return (
     <div className='App'>
       <LoadingScreen isLoading={isLoading} />
-      <Navbar />
-      <Carousel />
-      <About />
-      <Stats />
-      <Features />
-      <Quote />
-      <Societies />
-      <Newsletter />
-      <Footer />
+      {contentLoaded && (
+        <>
+          <Navbar />
+          <Carousel />
+          <About />
+          <Stats />
+          <Features />
+          <Quote />
+          <Societies />
+          <Newsletter />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
