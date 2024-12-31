@@ -1,11 +1,10 @@
 import React from "react";
 import "./Newsletter.css";
-import linkedMagazine from "../../assets/images/ieee-linked-magazine.jpeg"; // Add your magazine cover image
-
+import linkedMagazine from "../../assets/images/Newsletter/IEEE-Linked-image.jpg";
 const Newsletter = () => {
   return (
     <section className='newsletter-section'>
-      <div className='container'>
+      <div className='newsletter-container'>
         <div className='newsletter-content'>
           <div className='newsletter-text'>
             <span className='subtitle'>IEEE LINK NEWSLETTER</span>

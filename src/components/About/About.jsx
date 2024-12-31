@@ -1,18 +1,70 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./About.css";
 
 const About = () => {
+  const titleRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: "0px",
+    };
+
+    const titleObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-down");
+          titleObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const contentObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Add a slight delay before adding the animation class
+          setTimeout(() => {
+            entry.target.classList.add("animate-in");
+          }, 400); // Delay after title animation
+          contentObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    if (titleRef.current) {
+      titleObserver.observe(titleRef.current);
+    }
+    if (leftRef.current) {
+      contentObserver.observe(leftRef.current);
+    }
+    if (rightRef.current) {
+      contentObserver.observe(rightRef.current);
+    }
+
+    return () => {
+      if (titleRef.current) titleObserver.unobserve(titleRef.current);
+      if (leftRef.current) contentObserver.unobserve(leftRef.current);
+      if (rightRef.current) contentObserver.unobserve(rightRef.current);
+    };
+  }, []);
+
   return (
     <section className='about-section'>
       <div className='about-container'>
         <div className='about-header'>
-          <h2 className='about-title'>ABOUT US</h2>
+          <div className='title-wrapper' ref={titleRef}>
+            <h2 className='about-title'>ABOUT US</h2>
+          </div>
         </div>
         <div className='about-content'>
-          <div className='about-left'>
+          <div className='about-left fade-right' ref={leftRef}>
             <p className='about-description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              IEEE LINK is a pioneering student activities initiative that
+              emerged from the IEEE Kerala Section, dedicated to fostering
+              connections between IEEE student branches and enhancing the value
+              of IEEE student membership.
             </p>
             <ul className='about-list'>
               <li className='about-list-item'>
@@ -29,7 +81,7 @@ const About = () => {
                     d='M5 13l4 4L19 7'
                   />
                 </svg>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Connecting IEEE student branches across Kerala Section
               </li>
               <li className='about-list-item'>
                 <svg
@@ -45,7 +97,7 @@ const About = () => {
                     d='M5 13l4 4L19 7'
                   />
                 </svg>
-                Duis aute irure dolor in reprehenderit in voluptate velit.
+                Promoting collaboration and knowledge sharing among students
               </li>
               <li className='about-list-item'>
                 <svg
@@ -61,17 +113,18 @@ const About = () => {
                     d='M5 13l4 4L19 7'
                   />
                 </svg>
-                Ullamco laboris nisi ut aliquip ex ea commodo
+                Enhancing the value of IEEE student membership
               </li>
             </ul>
           </div>
-          <div className='about-right'>
+          <div className='about-right fade-left' ref={rightRef}>
             <p className='about-description'>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-              irure dolor in reprehenderit in voluptate velit esse cillum dolore
-              eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est
-              laborum.
+              As a student-driven initiative, IEEE LINK serves as a vital
+              platform for networking, professional development, and technical
+              growth. We facilitate meaningful connections between student
+              branches, organize collaborative events, and create opportunities
+              for students to develop their leadership and technical skills
+              within the IEEE community.
             </p>
             <a href='#' className='read-more-btn'>
               Read More →

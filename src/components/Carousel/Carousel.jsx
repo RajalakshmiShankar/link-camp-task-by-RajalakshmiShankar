@@ -8,21 +8,23 @@ import slide3 from "../../assets/images/ieeelink3.jpg";
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState(2);
+  const [isAnimating, setIsAnimating] = useState(true);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const items = [
     {
-      title: "Welcome to IEEE Link",
-      description: "Empowering Innovation Through Technology",
+      title: "Welcome to IEEE LINK",
+      description: "Connecting Student Branches Across Kerala Section",
       image: slide1,
     },
     {
-      title: "Connect & Collaborate",
-      description: "Join the Global Engineering Community",
+      title: "Student Activities Group",
+      description: "Enhancing IEEE Student Member Experience Since 2005",
       image: slide2,
     },
     {
-      title: "Learn & Grow",
-      description: "Access World-Class Technical Resources",
+      title: "Join Our Network",
+      description: "Building Bridges Between IEEE Student Communities",
       image: slide3,
     },
   ];
@@ -30,6 +32,9 @@ const Carousel = () => {
   const nextSlide = () => {
     setPreviousIndex(activeIndex);
     setActiveIndex((current) => (current + 1) % items.length);
+    setIsAnimating(true);
+    setIsZoomed(true);
+    setTimeout(() => setIsZoomed(false), 600);
   };
 
   const prevSlide = () => {
@@ -37,6 +42,9 @@ const Carousel = () => {
     setActiveIndex((current) =>
       current === 0 ? items.length - 1 : current - 1
     );
+    setIsAnimating(true);
+    setIsZoomed(true);
+    setTimeout(() => setIsZoomed(false), 600);
   };
 
   useEffect(() => {
@@ -60,20 +68,39 @@ const Carousel = () => {
                   : index === previousIndex
                   ? "previous"
                   : ""
-              }`}
+              } ${isZoomed ? "zoom-effect" : ""}`}
             >
               <div className='carousel-background'>
-                <img src={item.image} alt={item.title} />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className={isZoomed ? "zoom-in" : ""}
+                />
               </div>
-              <div className='container'>
-                <div className='row justify-content-center'>
-                  <div className='col-lg-6 text-center'>
-                    <h2>{item.title}</h2>
-                    <p>{item.description}</p>
-                    <a href='#about' className='carousel-btn'>
-                      Learn More
-                    </a>
-                  </div>
+              <div className='carousel-text-container'>
+                <div className='carousel-text-content'>
+                  <h2
+                    className={`${isAnimating ? "animate-title" : ""} ${
+                      index === activeIndex ? "fade-in" : ""
+                    }`}
+                  >
+                    {item.title}
+                  </h2>
+                  <p
+                    className={`${isAnimating ? "animate-description" : ""} ${
+                      index === activeIndex ? "fade-in" : ""
+                    }`}
+                  >
+                    {item.description}
+                  </p>
+                  <a
+                    href='#about'
+                    className={`carousel-btn ${
+                      isAnimating ? "animate-btn" : ""
+                    } ${index === activeIndex ? "fade-in" : ""}`}
+                  >
+                    Learn More
+                  </a>
                 </div>
               </div>
             </div>
@@ -81,7 +108,7 @@ const Carousel = () => {
         </div>
 
         {/* Navigation Arrows */}
-        <button className='carousel-nav prev' onClick={prevSlide}>
+        <button className='carousel-nav prev hover-effect' onClick={prevSlide}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 24 24'
@@ -94,7 +121,7 @@ const Carousel = () => {
             <polyline points='15 18 9 12 15 6' />
           </svg>
         </button>
-        <button className='carousel-nav next' onClick={nextSlide}>
+        <button className='carousel-nav next hover-effect' onClick={nextSlide}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 24 24'
@@ -112,10 +139,15 @@ const Carousel = () => {
           {items.map((_, index) => (
             <button
               key={index}
-              className={index === activeIndex ? "active" : ""}
+              className={`${
+                index === activeIndex ? "active" : ""
+              } indicator-animation`}
               onClick={() => {
                 setPreviousIndex(activeIndex);
                 setActiveIndex(index);
+                setIsAnimating(true);
+                setIsZoomed(true);
+                setTimeout(() => setIsZoomed(false), 600);
               }}
             ></button>
           ))}

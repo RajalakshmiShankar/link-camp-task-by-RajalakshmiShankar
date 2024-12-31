@@ -23,6 +23,9 @@
   position: relative;
   padding-bottom: 15px;
   display: inline-block; /* Makes the underline match the text width */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .about-title::after {
@@ -66,6 +69,19 @@
   align-items: center;
   margin-bottom: 15px;
   color: #555;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInRight 0.5s ease-out forwards;
+}
+
+.about-list-item:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.about-list-item:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.about-list-item:nth-child(3) {
+  animation-delay: 0.7s;
 }
 
 .about-list-item svg {
@@ -82,12 +98,12 @@
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
   margin-top: 20px;
 }
 
 .read-more-btn:hover {
-  background-color: #0934db;
+  transform: translateX(5px);
 }
 
 /* Mobile Responsive */
@@ -104,4 +120,119 @@
   .about-description {
     font-size: 15px;
   }
+}
+
+/* Add these animation classes */
+.fade-right,
+.fade-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.4s; /* Delay after title animation */
+}
+
+.fade-left {
+  transform: translateX(50px);
+}
+
+.animate-in.fade-right,
+.animate-in.fade-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Update title animations */
+.title-wrapper {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.title-wrapper.slide-down {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Update content animations */
+.fade-right,
+.fade-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.4s; /* Delay after title animation */
+}
+
+.fade-left {
+  transform: translateX(50px);
+}
+
+.animate-in.fade-right,
+.animate-in.fade-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* List item animations */
+.about-list-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-in .about-list-item:nth-child(1) {
+  transition-delay: 0.6s;
+}
+
+.animate-in .about-list-item:nth-child(2) {
+  transition-delay: 0.8s;
+}
+
+.animate-in .about-list-item:nth-child(3) {
+  transition-delay: 1s;
+}
+
+.animate-in .about-list-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Read more button animation */
+.read-more-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 1s;
+}
+
+.animate-in .read-more-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover effect for read more button */
+.read-more-btn:hover {
+  transform: translateX(5px);
+  background-color: #0934db;
 }

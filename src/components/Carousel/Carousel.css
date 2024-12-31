@@ -33,7 +33,7 @@
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-item.active .carousel-background img {
@@ -64,7 +64,7 @@
   height: 100vh;
   opacity: 0;
   transform: translateX(100%);
-  transition: all 0.6s ease;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-item.active {
@@ -79,14 +79,16 @@
 .carousel-item h2 {
   color: #fff;
   margin-bottom: 15px;
-  font-size: 42px;
+  font-size: 48px;
   font-weight: 700;
+  opacity: 0;
 }
 
 .carousel-item p {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 16px;
-  margin-bottom: 25px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  opacity: 0;
 }
 
 .carousel-btn {
@@ -96,17 +98,17 @@
   display: inline-block;
   padding: 12px 36px;
   border-radius: 50px;
-  transition: 0.5s;
+  transition: all 0.3s ease;
   color: #fff;
   background: #0d42ff;
   box-shadow: 0 8px 28px rgba(13, 66, 255, 0.2);
   text-decoration: none;
+  opacity: 0;
 }
 
 .carousel-btn:hover {
-  background: #0d3eff;
+  transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(13, 66, 255, 0.4);
-  color: #fff;
 }
 
 .carousel-indicators {
@@ -147,7 +149,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .carousel-item h2 {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   .carousel-item p {
@@ -217,4 +219,150 @@
   position: relative;
   z-index: 2;
   padding-top: 100px;
+}
+
+/* Update existing styles */
+.carousel-text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.carousel-text-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+/* Animation classes */
+.animate-title {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-description {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-btn {
+  animation: slideUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile responsive updates */
+@media (max-width: 768px) {
+  .carousel-text-content {
+    padding: 0 15px;
+  }
+
+  .carousel-item h2 {
+    font-size: 32px;
+  }
+
+  .carousel-item p {
+    font-size: 16px;
+  }
+}
+
+/* Add these new animation styles */
+.zoom-effect img {
+  animation: zoomAnimation 0.6s ease-out;
+}
+
+.zoom-in {
+  transform: scale(1.1);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.indicator-animation {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.indicator-animation:hover {
+  transform: scale(1.2);
+}
+
+.hover-effect {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: translateY(-50%) scale(1.1);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes zoomAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Update existing animations for smoother transitions */
+.animate-title {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-description {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+}
+
+.animate-btn {
+  animation: slideUp 0.8s ease-out 0.4s forwards;
+}
+
+/* Make transitions smoother */
+.carousel-item {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-background img {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhance button hover effect */
+.carousel-btn {
+  transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(13, 66, 255, 0.4);
 }
