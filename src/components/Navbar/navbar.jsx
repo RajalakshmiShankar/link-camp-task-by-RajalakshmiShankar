@@ -32,6 +32,25 @@ const Navbar = () => {
     }
   };
 
+  const scrollToNewsletter = (e) => {
+    e.preventDefault();
+    const newsletterSection = document.querySelector(".newsletter-section");
+    if (newsletterSection) {
+      // Close mobile menu if open
+      setIsOpen(false);
+      // Close any open dropdowns
+      setActiveDropdown(null);
+      // Calculate header height for offset
+      const headerHeight = document.querySelector(".navbar").offsetHeight;
+      const elementPosition = newsletterSection.offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <nav className='navbar'>
       <div className='nav-container'>
@@ -91,7 +110,11 @@ const Navbar = () => {
               </ul>
             </li>
             <li className='nav-item'>
-              <a href='/ieee-linked' className='nav-link'>
+              <a
+                href='/ieee-linked'
+                className='nav-link'
+                onClick={scrollToNewsletter}
+              >
                 IEEE Linked
               </a>
             </li>
@@ -133,22 +156,20 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
-            <li className='nav-item'>
-              <a href='/contact' className='nav-link contact-btn'>
-                Contact
-              </a>
-            </li>
           </ul>
         </div>
 
         <div className='nav-social'>
-          <a href='/' className='social-link'>
+          <a href='https://www.instagram.com/ieeelink/' className='social-link'>
             <FaInstagram />
           </a>
-          <a href='/' className='social-link'>
+          <a
+            href='https://www.linkedin.com/company/ieeelink/'
+            className='social-link'
+          >
             <FaLinkedin />
           </a>
-          <a href='/' className='social-link'>
+          <a href='https://www.facebook.com/ieeelink' className='social-link'>
             <FaFacebook />
           </a>
         </div>

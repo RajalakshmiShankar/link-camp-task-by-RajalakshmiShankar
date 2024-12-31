@@ -15,13 +15,19 @@ const Footer = () => {
             membership.
           </p>
           <div className='social-links'>
-            <a href='/' className='social-link'>
+            <a href='https://www.facebook.com/ieeelink' className='social-link'>
               <FaFacebook />
             </a>
-            <a href='/' className='social-link'>
+            <a
+              href='https://www.instagram.com/ieeelink/'
+              className='social-link'
+            >
               <FaInstagram />
             </a>
-            <a href='/' className='social-link'>
+            <a
+              href='https://www.linkedin.com/company/ieeelink/'
+              className='social-link'
+            >
               <FaLinkedin />
             </a>
           </div>
