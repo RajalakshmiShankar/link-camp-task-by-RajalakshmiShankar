@@ -33,7 +33,7 @@ function App() {
 
   useEffect(() => {
     if (contentLoaded) {
-      // Add a slight delay before hiding loading screen
+      // Add a slight delay before hiding loading screen.............
       const timer = setTimeout(() => {
         setIsLoading(false);
       }, 500);
